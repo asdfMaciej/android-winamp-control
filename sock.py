@@ -33,7 +33,12 @@ class SocketServer:
 			data = connection.recv(1024).decode('utf-8')
 			if not data: 
 				break
-			connection.send(str(self._w.parse(data)).encode('utf-8'))
+
+			dt = self._w.parse(data) 
+			if dt == False:
+				a = 1
+			else:
+				connection.send(str(dt).encode('utf-8'))
 		connection.close()
 
 class WinampHandler:
