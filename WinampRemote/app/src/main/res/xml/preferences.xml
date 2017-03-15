@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="IP"
+        android:key="ip_address"
+        android:summary="The IP to your PC [usually 192.168.x.xxx]"
+        android:defaultValue="192.168.1.108"></EditTextPreference>
+    <EditTextPreference
+        android:defaultValue="21337"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Port"
+        android:key="port_address"
+        android:summary="Don't edit unless 100% sure - default is 21337." />
+    <CheckBoxPreference android:title="Application Updates"
+        android:defaultValue="false"
+        android:summary="This option if selected will allow the application to check for latest versions."
+        android:key="applicationUpdates" />
+</PreferenceScreen>
