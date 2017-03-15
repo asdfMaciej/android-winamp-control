@@ -12,14 +12,14 @@ public class NetClient {
     /**
      * Maximum size of buffer
      */
-    public static final int BUFFER_SIZE = 2048;
+    public static final int BUFFER_SIZE = 1024;
     private Socket socket = null;
     private PrintWriter out = null;
     private BufferedReader in = null;
 
     private String host = null;
     private String macAddress = null;
-    private int port = 7999;
+    private int port = 21337;
 
 
     /**
@@ -37,7 +37,8 @@ public class NetClient {
     private void connectWithServer() {
         try {
             if (socket == null) {
-                socket = new Socket(this.host, this.port);
+               // socket = new Socket(this.host, this.port);
+                socket = new Socket("192.168.1.109", 21337);
                 out = new PrintWriter(socket.getOutputStream());
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             }
@@ -63,8 +64,10 @@ public class NetClient {
     public void sendDataWithString(String message) {
         if (message != null) {
             connectWithServer();
-            out.write(message);
+            //out.write(message);
+            out.write("pause");
             out.flush();
+            disConnectWithServer();
         }
     }
 

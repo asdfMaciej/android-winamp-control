@@ -3,14 +3,16 @@
     <EditTextPreference android:title="IP"
         android:key="ip_address"
         android:summary="The IP to your PC [usually 192.168.x.xxx]"
-        android:defaultValue="192.168.1.108"></EditTextPreference>
+        android:defaultValue="192.168.1.109"
+        android:singleLine="true"></EditTextPreference>
     <EditTextPreference
         android:defaultValue="21337"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Port"
         android:key="port_address"
-        android:summary="Don't edit unless 100% sure - default is 21337." />
+        android:summary="Don't edit unless 100% sure - default is 21337."
+        android:numeric="integer" />
     <CheckBoxPreference android:title="Application Updates"
         android:defaultValue="false"
         android:summary="This option if selected will allow the application to check for latest versions."
