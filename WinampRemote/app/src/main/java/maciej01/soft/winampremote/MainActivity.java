@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         private void getPreferences() {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(oszaleje());
             ip = prefs.getString("ip_address", "192.168.1.109");
-            port = 21337;//Integer.parseInt(prefs.getString("port_address", "21337"));
+            //port = 21337;
+            port = Integer.parseInt(prefs.getString("port_address", "21337"));
         }
 
         public String sendCommand(String command) {
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            bConnectSet(result);
+            String a;
+            a = "useless";
         }
 
     }
@@ -84,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView info = (TextView) findViewById(R.id.textView2);
         Button bConnect = ((Button) findViewById(R.id.button));
         Button bOptions = ((Button) findViewById(R.id.button3));
+        Button bPrev = ((Button) findViewById(R.id.button7));
+        Button bNext = ((Button) findViewById(R.id.button8));
+        Button bStop = ((Button) findViewById(R.id.button9));
+        Button bPlay = ((Button) findViewById(R.id.button10));
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -97,6 +103,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openOptions(v);
+            }
+        });
+        bPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleSocketClient ss = new SimpleSocketClient();
+                ss.execute("prev");
+            }
+        });
+        bNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleSocketClient ss = new SimpleSocketClient();
+                ss.execute("next");
+            }
+        });
+        bStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleSocketClient ss = new SimpleSocketClient();
+                ss.execute("stop");
+            }
+        });
+        bPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleSocketClient ss = new SimpleSocketClient();
+                ss.execute("play");
             }
         });
         seekVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -114,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                info.setText("Covered: " + progress + "/" + seekBar.getMax());
+                info.setText("Volume: " + progress + "/" + seekBar.getMax());
                 SimpleSocketClient ss = new SimpleSocketClient();
                 ss.execute("setVolume "+Integer.toString(progress));
             }
@@ -126,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         //WinampHandler wh = new WinampHandler();
         //wh.pause();
         //
-        bConnect.setText("chuj");
         SimpleSocketClient ss = new SimpleSocketClient();
         //bConnect.setText("create");
         ss.execute("pause");

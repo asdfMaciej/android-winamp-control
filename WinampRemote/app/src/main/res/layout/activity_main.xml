@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="test"
+            android:text="pause/play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button"
@@ -49,6 +49,41 @@
             android:layout_alignParentStart="true"
             android:max="255"
             android:progress="1" />
+
+        <Button
+            android:text="next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button8"
+            android:layout_alignBaseline="@+id/button7"
+            android:layout_alignBottom="@+id/button7"
+            android:layout_toEndOf="@+id/textView2" />
+
+        <Button
+            android:text="prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button7"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/textView2" />
+
+        <Button
+            android:text="play "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button10"
+            android:layout_marginBottom="46dp"
+            android:layout_above="@+id/button8"
+            android:layout_alignStart="@+id/button9" />
+
+        <Button
+            android:text="stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button9"
+            android:layout_marginTop="42dp"
+            android:layout_below="@+id/button7"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
