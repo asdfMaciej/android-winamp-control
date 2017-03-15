@@ -64,15 +64,18 @@ public class NetClient {
     public void sendDataWithString(String message) {
         if (message != null) {
             connectWithServer();
-            //out.write(message);
-            out.write("pause");
+            out.write(message);
+            //out.write("pause");
             out.flush();
             disConnectWithServer();
         }
     }
 
-    public String receiveDataFromServer() {
+    public String receiveDataFromServer(String send) {
         try {
+            connectWithServer();
+            //out.write(message);
+            out.write(send);
             String message = "";
             int charsRead = 0;
             char[] buffer = new char[BUFFER_SIZE];

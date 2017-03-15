@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             String r = "";
             NetClient nc = new NetClient(ip, port, "");
             nc.sendDataWithString(command);
-            r = nc.receiveDataFromServer();
+            r = "";//nc.receiveDataFromServer(command);
             return r;
         }
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             WinampHandler wh = new WinampHandler();
-            wh.pause();
+            wh.sendCommand(params[0]);
             return "haha";
         }
 
@@ -115,19 +115,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 info.setText("Covered: " + progress + "/" + seekBar.getMax());
+                SimpleSocketClient ss = new SimpleSocketClient();
+                ss.execute("setVolume "+Integer.toString(progress));
             }
         });
     }
 
     public void onTesttt(View view) {
         Button bConnect = ((Button) findViewById(R.id.button));
-        WinampHandler wh = new WinampHandler();
-        wh.pause();
+        //WinampHandler wh = new WinampHandler();
+        //wh.pause();
         //
         bConnect.setText("chuj");
-        //SimpleSocketClient ss = new SimpleSocketClient();
+        SimpleSocketClient ss = new SimpleSocketClient();
         //bConnect.setText("create");
-        //ss.execute("192.168.1.109", "21337", "next");
+        ss.execute("pause");
         //bConnect.setText("heil");
 
     }
